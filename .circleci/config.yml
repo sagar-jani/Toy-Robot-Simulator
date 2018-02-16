@@ -1,32 +1,23 @@
 version: 2
 jobs:
   build:
-
 	working_directory: ~/repo
-
     	docker:
       		- image: circleci/openjdk:8-jdk
-
-    steps:
-      - checkout
-      - restore_cache:
-          key: toy-robot-simulator-{{ checksum "pom.xml" }}
-      
-      - run: mvn dependency:go-offline
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: toy-robot-simulator-{{ checksum "pom.xml" }}
-
-            # run tests!
-      - run: mvn package
-
-   - store_test_results:
-          path: target/surefire-reports
-      
-      - store_artifacts:
-          path: target/toy-robot-simulator-1.0-SNAPSHOT.jar
+    	steps:
+      	   - checkout
+           - restore_cache:
+       		 key: toy-robot-simulator-{{ checksum "pom.xml" }}
+      	   - run: mvn dependency:go-offline
+      	   - save_cache:
+          	paths:
+           - ~/.m2
+          	key: toy-robot-simulator-{{ checksum "pom.xml" }}
+      	   - run: mvn package
+   	   - store_test_results:
+          	path: target/surefire-reports
+      	   - store_artifacts:
+         	 path: target/toy-robot-simulator-1.0-SNAPSHOT.jar
 
 
 

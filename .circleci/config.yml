@@ -1,9 +1,9 @@
 version: 2
 jobs:
    build:
-	working_directory: ~/repo
-    	docker:
-      		- image: circleci/openjdk:8-jdk
+      working_directory: ~/repo
+       docker:
+           - image: circleci/openjdk:8-jdk
     	steps:
       	   - checkout
            - restore_cache:
